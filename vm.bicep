@@ -6,8 +6,6 @@ param clusterSubnetId string
 param bootDiagStorageAccount object
 param vmSize string
 param vmDataDiskCount int
-param automationAccountName string
-param automationAccountResourceGroupName string
 param managedIdName string
 
 @secure()
@@ -20,9 +18,7 @@ var clusterRgName = resourceGroup().name
 
 resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2022-01-31-preview' existing = {
   name: managedIdName
-  scope: resourceGroup('<subscription id>', '<subscrtiption name>)
-}
-
+  scope: resourceGroup()}
 
 resource clusterVmIp 'Microsoft.Network/publicIPAddresses@2020-11-01' = {
   name: '${vmName}-IP'

@@ -6,13 +6,10 @@ param keyVaultName string
 param keyVaultRgName string
 param automationAccountName string
 param automationAccountResourceGroupName string
-param dscConfigurationName string
 param vmSize string
 param vmDataDiskCount int
 param managedIdName string
-param genevaMonitoringRole string
-param genevaConfigVersion string
-param genevaMonitoringTenant string
+
 
 var clusterRgName = resourceGroup().name
 var bootDiagStorageAccountName = toLower(replace('${clusterRgName}diag', '-', ''))
@@ -229,7 +226,7 @@ module clusterVM 'vm.bicep' = [for (vm, i) in array(vmNames): {
     vmDataDiskCount: vmDataDiskCount
     automationAccountName: automationAccountName
     automationAccountResourceGroupName: automationAccountResourceGroupName
-    managedIdName: managedIdNames
+    managedIdName: managedIdName
   }
 }]
 
